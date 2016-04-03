@@ -1,0 +1,98 @@
+﻿@{ 
+    WebService1 w = new WebService1();    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Giày dép</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>   
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>  
+                    <span class="icon-bar"></span>
+                </button>
+                
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @foreach (var i in w.getMenu().Where(o=>o.ParentID==0))
+                    {
+                        <li>@Html.ActionLink(i.Name,i.Link,"Home")</li>
+                        
+                        @*<ul>
+                            @foreach (var j in w.getMenu().Where(o => o.ParentID == i.ID))
+                            {
+                                <li class="dropdown-toggle hidden">@Html.ActionLink(j.Name, j.Link)</li>
+                            }
+                        </ul>*@
+                    }
+                    <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Giới thiệu", "About", "Home")</li>
+                </ul>
+            </div>
+        </div>
+       
+    </div>
+    <div class="body-slider" style="margin-bottom: 0px;">
+        @RenderSection("slider", required: false)
+    </div>
+    <div class="body-content" style="background: #f8f6f6; min-height: 800px; margin-top: 0px !important; ">
+        @RenderBody()    
+    </div>
+    <footer style="background: #808080; height: auto;">
+        <div class="row">
+            <div class="col-lg-4 text-left">
+                <table class=" table-condensed text-center" style="margin-left: 30px">
+                <tr>
+                    <td colspan="2" style="text-align: center; text-transform: uppercase; ">
+                        <strong>Liên hệ</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       Mr.Quyết:
+                    </td>
+                    <td>
+                        0988945606
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Mr.Hải:
+                    </td>
+                    <td>
+                        0168759562
+                    </td>
+                </tr>
+            
+            </table>
+        </div>
+            <div class="col-lg-4 text-center">
+                <br />
+                Bản quyền Website thuộc về cửa hàng ShoeShop 2016<br />
+                Địa chỉ: 247- Trần Đại Nghĩa-Hai Bà Trưng-Hà Nội<br />
+                Điện thoại: 0988945306 - 01656208029<br />
+                Email: hoquyet.1994@gmail.com<br />
+                <br />
+            </div>
+        </div>
+        <div class="row text-center" style="background: #c2b1b1">
+           Copyright &copy; @DateTime.Now.Year - Design by Hồ Sỹ Quyết
+        </div>   
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
