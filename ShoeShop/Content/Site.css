@@ -11,6 +11,7 @@
 .body-slider{
     padding-left: 0px;
     padding-right: 0px;
+    margin-top: 50px;
 }
 .sp-ol-img {
     width: 30px;
@@ -34,4 +35,7 @@ footer{
     color: white;
     position: relative;
     margin-bottom: 0px;   
+}
+#myCarousel{
+    margin-top: 10px;
 }
