@@ -1,0 +1,10 @@
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\Model.dll.config
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\Model.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\Model.pdb
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\EntityFramework.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\EntityFramework.xml
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\obj\Debug\Model.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Model\obj\Debug\Model.pdb

@@ -8,7 +8,7 @@ namespace ShoeShop.Controllers
 {
     public class PageController : Controller
     {
-        WebService1 wsv = new WebService1();
+        
         // GET: Page
         public ActionResult Index()
         {

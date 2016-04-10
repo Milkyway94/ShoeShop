@@ -67,3 +67,9 @@ c:\users\milkyway\documents\visual studio 2015\Projects\ShoeShop\ShoeShop\bin\Mi
 c:\users\milkyway\documents\visual studio 2015\Projects\ShoeShop\ShoeShop\obj\Debug\ShoeShop.csprojResolveAssemblyReference.cache
 c:\users\milkyway\documents\visual studio 2015\Projects\ShoeShop\ShoeShop\obj\Debug\ShoeShop.dll
 c:\users\milkyway\documents\visual studio 2015\Projects\ShoeShop\ShoeShop\obj\Debug\ShoeShop.pdb
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\Models.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\Models.pdb
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\PagedList.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\PagedList.Mvc.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\PagedList.xml
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\ShoeShop\bin\PagedList.Mvc.xml

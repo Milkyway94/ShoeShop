@@ -1,7 +1,4 @@
-﻿@{ 
-    WebService1 w = new WebService1();    
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,18 +21,7 @@
                 @*@Html.Partial("_LoginPartial")*@
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @foreach (var i in w.getMenu().Where(o=>o.ParentID==0))
-                    {
-                        <li>@Html.ActionLink(i.Name,i.Link,"Home")</li>
-                        
-                        @*<ul>
-                            @foreach (var j in w.getMenu().Where(o => o.ParentID == i.ID))
-                            {
-                                <li class="dropdown-toggle hidden">@Html.ActionLink(j.Name, j.Link)</li>
-                            }
-                        </ul>*@
-                    }
+                <ul class="nav navbar-nav">                      
                     <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Giới thiệu", "About", "Home")</li>
                 </ul>
