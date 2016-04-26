@@ -1,0 +1,757 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>KalikoCMS.Engine</name>
+  </assembly>
+  <members>
+    <member name="T:KalikoCMS.IDashboardArea">
+      <summary>Inherit this interface in order to add your own dashboards into the administration interface.</summary>
+    </member>
+    <member name="P:KalikoCMS.IDashboardArea.Icon">
+      <summary>The icon that should be used in the left menu.</summary>
+    </member>
+    <member name="P:KalikoCMS.IDashboardArea.MenuName">
+      <summary>The text displayed in the left menu.</summary>
+    </member>
+    <member name="P:KalikoCMS.IDashboardArea.Path">
+      <summary>The path from where the dashboard will be loaded. If no leading slash is entered, the path is relative to the admin path.</summary>
+    </member>
+    <member name="P:KalikoCMS.IDashboardArea.Title">
+      <summary>The title displayed for the dashboard.</summary>
+    </member>
+    <member name="T:KalikoCMS.Dashboard">
+      <summary>Handles the dashboards in the administration interface. A dashboard corresponds with a section in the left menu within the admin ui.</summary>
+    </member>
+    <member name="T:KalikoCMS.PageFactory">
+      <summary>PageFactory is the class to use in order to interact with the pages in the system. Whether it's fetching one or multiple pages or deleting one you'll find
+functions for it here.</summary>
+    </member>
+    <member name="T:KalikoCMS.Utils">
+      <summary>Class that collects various helpful functions.</summary>
+    </member>
+    <member name="M:KalikoCMS.Dashboard.RegisterArea(KalikoCMS.IDashboardArea)">
+      <summary>Used to register a custom dashboard area in the administration interface.</summary>
+    </member>
+    <member name="F:KalikoCMS.Dashboard.Areas">
+      <summary>Contains all registered dashboard areas. This field should not be written to directly. All registration should go through RegisterArea.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.DeletePage(System.Guid)">
+      <summary>Delete a single page from the system.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.FindPage(System.String,KalikoCMS.ContentProvider.IRequestManager)">
+      <summary>Try to route the requested Url. Returns true if handled or false if not.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetAncestors">
+      <summary>Get a collection with all ancestors to a page. Usefull for bread crumbs and to traverse through parents. Related to GetPagePath but without the current page in the list.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPage">
+      <summary>Gets children for a page based on publish state or predicate.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPageOfPageType">
+      <summary>Gets children of a specified page type for a particular page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPage">
+      <summary>Gets a page based on the identity parameters passed to the function.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPageIdFromUrl(System.String)">
+      <summary>Gets the id for a page based on the specified url.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPagePath">
+      <summary>Gets a collection of a page and all it's ancestors. Usefull for bread crumbs and to traverse through parents. Related to GetAncestors but also includes the current pag.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPages">
+      <summary>Get all pages based on a certain criteria. Performs a site wide search.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPageTreeFromPage">
+      <summary>Get a collection with the page tree from a specified root.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetParentAtLevel(System.Guid,System.Int32)">
+      <summary>Get the specified page's parent from the defined level. For instance if you call this function with a page that is 5 levels beyond the root and request the
+second level page the system will itterate through the parents until it's on level 2 and return that page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetSpecificVersion">
+      <summary>Get a specific version of a page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetWorkingCopy(System.Guid)">
+      <summary>Gets or creates a new working copy version of a page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.MovePage(System.Guid,System.Guid,System.Int32)">
+      <summary>Move the specified page to the new parent specified as target.</summary>
+      <param name="pageId">Page identifier.</param>
+      <param name="targetId">Target page identifier to which the page should be moved.</param>
+      <param name="position">Position in the target node. Used to recalculate sort order.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.ReorderChildren(System.Guid,System.Guid,System.Int32)">
+      <summary>Reorder children when the parent page is set to sort its children using SortIndex.</summary>
+      <param name="pageId">Page identifier that should be reordered.</param>
+      <param name="parentId">Parent page identifier of the page.</param>
+      <param name="position">Position in the target node. Used to recalculate sort order.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetAncestors(KalikoCMS.Core.CmsPage)">
+      <summary>Get a collection with all ancestors to a page. Usefull for bread crumbs and to traverse through parents. Related to GetPagePath but without the current page in the list.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetAncestors(System.Guid)">
+      <summary>Get a collection with all ancestors to a page. Usefull for bread crumbs and to traverse through parents. Related to GetPagePath but without the current page in the list.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPage(System.Guid,KalikoCMS.Core.PublishState)">
+      <summary>Gets all children under a particular page that matches the publish state given. By default publish state is PublishState.Published.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPage(System.Guid,System.Predicate{KalikoCMS.Core.PageIndexItem})">
+      <summary>Gets all children under a particular page that matches the predicate. This can be used to only list pages that should be visible in a menu, or that matches any
+other criteria.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPageOfPageType(System.Guid,System.Int32,KalikoCMS.Core.PublishState)">
+      <summary>Gets children of a specified page type for a particular page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetChildrenForPageOfPageType(System.Guid,System.Type,KalikoCMS.Core.PublishState)">
+      <summary>Gets children of a specified page type for a particular page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPage(System.Guid)">
+      <summary>Get a specified page based on identity and language. This will return a CmsPage object so you will not find it's properties strongly typed. Instead you can
+access them using the objects Property collection (myPage.Property["MyPropertyName"])</summary>
+      <returns>Returns a generic page object.</returns>
+      <param name="pageId">Page identifier.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPage(System.Guid,System.Int32)">
+      <summary>Get a specified page. This will return a CmsPage object so you will not find it's properties strongly typed. Instead you can access them using the objects
+Property collection (myPage.Property["MyPropertyName"])</summary>
+      <returns>Returns a generic page object.</returns>
+      <param name="pageId">Page identifier.</param>
+      <param name="languageId">Language identifier.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPage``1(System.Guid)">
+      <summary>
+        <para>Get a typed version of a specified page. This is usefull if you know what type of page you are getting. If you don't you should go with the more generic
+GetPage(Guid pageId).</para>
+      </summary>
+      <returns>Returns a strongly typed page.</returns>
+      <typeparam name="T">Page type</typeparam>
+      <param name="pageId">Page identifier</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPage``1(System.Guid,System.Int32)">
+      <summary>
+        <para>Get a typed version of a specified page and language. This is usefull if you know what type of page you are getting. If you don't you should go with the
+more generic GetPage(Guid pageId, int languageId).</para>
+      </summary>
+      <typeparam name="T">Returns a strongly typed page.</typeparam>
+      <param name="pageId">Page identifier.</param>
+      <param name="languageId">Language identifier.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPagePath(KalikoCMS.Core.CmsPage)">
+      <summary>Gets a collection of the specified page and all it's ancestors. Usefull for bread crumbs and to traverse through parents.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPagePath(System.Guid)">
+      <summary>Gets a collection of the specified page by it's identity and all it's ancestors. Usefull for bread crumbs and to traverse through parents.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPages(System.Predicate{KalikoCMS.Core.PageIndexItem})">
+      <summary>Get all pages based on a specified predicate.</summary>
+      <returns>Returns a collection of all pages that matches the predicate.</returns>
+      <param name="match">Predicate used to filter through all pages of the site.</param>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPages(System.Int32,KalikoCMS.Core.PublishState)">
+      <summary>Get all pages of a specific page type and publish state.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPages(System.Type,KalikoCMS.Core.PublishState)">
+      <summary>Get all pages of a specific page type and publish state.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPageTreeFromPage(System.Guid,KalikoCMS.Core.PublishState)">
+      <summary>Get a collection with the page tree from a specified root.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPageTreeFromPage(System.Guid,System.Predicate{KalikoCMS.Core.PageIndexItem})">
+      <summary>Get a collection with the page tree from a specified root where the pages match the specified predicate.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetPageTreeFromPage(System.Guid,System.Guid,KalikoCMS.Core.PublishState)">
+      <summary>Get a collection with the page tree from a specified root down to a specified lead. Useful for following a specific branch of the tree in - for instance - a
+menu tree between the root and the active page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetSpecificVersion(System.Guid,System.Int32)">
+      <summary>Get a specific version of a page.</summary>
+    </member>
+    <member name="M:KalikoCMS.PageFactory.GetSpecificVersion(System.Guid,System.Int32,System.Int32)">
+      <summary>Get a specific version of a page.</summary>
+    </member>
+    <member name="E:KalikoCMS.PageFactory.PageDeleted">
+      <summary>Event that occurs when a page has been deleted.</summary>
+    </member>
+    <member name="E:KalikoCMS.PageFactory.PagePublished">
+      <summary>Event that occurs when a page has been published.</summary>
+    </member>
+    <member name="E:KalikoCMS.PageFactory.PageSaved">
+      <summary>Event that occurs when a page has been saved.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetAppSetting">
+      <summary>Get value from AppSettings.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetCookie(System.String)">
+      <summary>Get cookie value.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetCurrentPageId">
+      <summary>Get the id for the page being accessed in the current request.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetFormOrQueryString(System.String)">
+      <summary>Get value from form or querystring.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetItem(System.String)">
+      <summary>Get item from the HttpContext items collection.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.IsNullableType(System.Type)">
+      <summary>Check if a type is nullable</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.RenderSimplePage(System.Web.HttpResponse,System.String,System.String,System.Int32)">
+      <summary>Render a simple message page. (Used for system messages)</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.SetCookie(System.String,System.String)">
+      <summary>Set the value of a cookie</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetAppSetting(System.String)">
+      <summary>Get value from AppSettings.</summary>
+    </member>
+    <member name="M:KalikoCMS.Utils.GetAppSetting(System.String,System.String)">
+      <summary>Get value from AppSettings.</summary>
+    </member>
+    <member name="P:KalikoCMS.Utils.ApplicationPath">
+      <summary>The application path.</summary>
+    </member>
+    <member name="P:KalikoCMS.Utils.DomainApplicationPath">
+      <summary>The application path including a HTTP or HTTPS prefix.</summary>
+    </member>
+    <member name="P:KalikoCMS.Utils.ServerDomain">
+      <summary>The domain hosting the website.</summary>
+    </member>
+    <member name="P:KalikoCMS.Utils.Version">
+      <summary>The Kaliko CMS version running the website.</summary>
+    </member>
+    <member name="T:KalikoCMS.Attributes.PageTypeAttribute">
+      <summary>Used to decorate classes that inherit from CmsPage in order to declare pagetypes. This attribute is
+required in order for the system to find which pagetypes that is available.</summary>
+    </member>
+    <member name="T:KalikoCMS.Attributes.PropertyAttribute">
+      <summary>Used to decorate properties in pagetypes. This attribute is required in order for the system to recognize a property as being a page property.</summary>
+    </member>
+    <member name="T:KalikoCMS.Attributes.PropertyTypeAttribute">
+      <summary>Used to decorate custom property types. This attribute is required in order for the system to find and add the property type to the system.</summary>
+    </member>
+    <member name="M:KalikoCMS.Attributes.PageTypeAttribute.#ctor(System.String,System.String)">
+      <summary>Use this constructor when building a website with ASP.NET Mvc.</summary>
+    </member>
+    <member name="M:KalikoCMS.Attributes.PageTypeAttribute.#ctor(System.String,System.String,System.String)">
+      <summary>Use this constructor when building a website with ASP.NET WebForms.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.AllowedTypes">
+      <summary>Optional property that limits which page types can be created under a page of this type. If not specified all page types are available.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.DefaultChildSortDirection">
+      <summary>Optional property that determines the default sort order of the children to a page of this type. If not specified ascending order is used.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.DefaultChildSortOrder">
+      <summary>Optional property that determines the default sort mode of the children to a page of this type. If not specified SortIndex is used</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.DisplayName">
+      <summary>This is the name that will be displayed for the page type in the user interface.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.Name">
+      <summary>This is the internal name that acts as a key for the page type. <strong>This value should not be changed once set!</strong></summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.PageTemplate">
+      <summary>The path to the template file for the page. Only used with WebForms, leave blank if using Mvc.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.PageTypeDescription">
+      <summary>An optional description that is shown in the administrative user interface when creating a new page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PageTypeAttribute.PreviewImage">
+      <summary>Optional property for setting the path to a preview image for the page type. This preview is shown when creating a new page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyAttribute.Header">
+      <summary>Header displayed for the property in the page editor.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyAttribute.Parameters">
+      <summary>Parameter passed to the editor. In the base class this is always null, override in order to pass parameters to the editor for custom property types.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyTypeAttribute.Description">
+      <summary>Description of the property type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyTypeAttribute.EditorControl">
+      <summary>Path to user control that is used to edit the property type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyTypeAttribute.Name">
+      <summary>Name of the property type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Attributes.PropertyTypeAttribute.PropertyTypeId">
+      <summary>Unique identifier.</summary>
+    </member>
+    <member name="M:KalikoCMS.Caching.WebCacheRefreshDependency.DependencyDispose">
+      <summary>Releases the resources used by the  class and any classes that derive from <see cref="T:System.Web.Caching.CacheDependency" />.</summary>
+    </member>
+    <member name="T:KalikoCMS.Configuration.SiteSettings">
+      <summary>Class that holds most configuration settings for the system.</summary>
+    </member>
+    <member name="M:KalikoCMS.Configuration.SiteHostConfigurationLanguageCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+      <summary>Gets the element key for a specified configuration element when overridden in a derived class.</summary>
+      <returns>An  that acts as the key for the specified <see cref="T:System.Configuration.ConfigurationElement" />.</returns>
+      <param name="element">The  to return the key for.</param>
+    </member>
+    <member name="M:KalikoCMS.Configuration.SiteHostConfigurationLanguageCollection.CreateNewElement">
+      <summary>When overridden in a derived class, creates a new .</summary>
+      <returns>A newly created .</returns>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.AdminPath">
+      <summary>The path to the administration interface. By default "/Admin/"</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.BlockedFileExtensions">
+      <summary>List of file extensions that are blocked from upload. Common executables and scripts are listed by default.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.CacheProvider">
+      <summary>Type name of cache provider to use. If not set WebCache is used by default.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.DataStorePath">
+      <summary>Used by some data store providers.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.DataStoreProvider">
+      <summary>Type name of data store provider. If not set the internal provider is used.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.DateFormat">
+      <summary>Format in which dates and time are displayed. By default 'yyyy-MM-dd HH:mm:ss'</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.FilePath">
+      <summary>Path to where files are stored. By default "/Files/"</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.ImageCachePath">
+      <summary>Path to where images are cached. By default "/ImageCache/"</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.Instance">
+      <summary>Singleton implementation</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.RootPage">
+      <summary>Unique identifier of the root page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.SearchProvider">
+      <summary>Type name of search provider.</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.StartPageId">
+      <summary>Unique identifier that determines which page to act as start page in the system (and also be displayed as the application root).</summary>
+    </member>
+    <member name="P:KalikoCMS.Configuration.SiteSettings.Theme">
+      <summary>Administration interface theme name.</summary>
+    </member>
+    <member name="T:KalikoCMS.ContentProvider.IPageExtender">
+      <summary>Implement in order to enable page extension for a page.</summary>
+    </member>
+    <member name="M:KalikoCMS.ContentProvider.IPageExtender.HandleRequest(System.Guid,System.String[])">
+      <summary>Called when a request is made to a sub url that isn't a page in the system. Will pass the identifier of the page that will act as the page extender as well as
+all url segments that are below that page.</summary>
+      <param name="pageId">Unique identifier of the page that acts as a page extender.</param>
+      <param name="remainingSegments">An array with the url segments that are below the page acting as page extender.</param>
+    </member>
+    <member name="T:KalikoCMS.Core.IStartupSequence">
+      <summary>Implement this interface in order to have custom code run at system start up.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.IStartupSequence.Startup">
+      <summary>The method that will be called by the system at startup.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.IStartupSequence.StartupOrder">
+      <summary>Number that will determine which order all IStartupSequence implementations within the application will run. A number lower than 0 will run before the main
+system initialization (database setup etc.) where a higher number than 0 will run after.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.PublishState">
+      <summary>Enumeration used for filtering page states.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.PublishState.Published">
+      <summary>Only published.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.PublishState.Unpublished">
+      <summary>Only unpublished.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.PublishState.All">
+      <summary>Both published and unpublished.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.CmsPage">
+      <summary>Base class representing a page in the system.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.PageType">
+      <summary>Class corresponding to a page type in the system as well as providing methods for getting page type definitions.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.RedirectManager">
+      <summary>RedirectManager handles previous urls and acts as a fallback if a page is moved or the url segment is changed.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.RootPage">
+      <summary>Class corresponding to the root of the site.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.TagContext">
+      <summary>Used to enable separate tag clouds on a website.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.TagManager">
+      <summary>Provides methods in order to manage page tags and do lookups. Uses caching to increase speed.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.ConvertToTypedPage``1">
+      <summary>Cast a CmsPage to a strongly typed page type.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.CreateChildPage">
+      <summary>Create a child for the page.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.GetBaseIndexItem">
+      <summary>Creates an index item with the basic information for search engine indexing.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.MakeEditable">
+      <summary>Makes an editable version of the page.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.CreateChildPage(System.Type)">
+      <summary>Create a child for the page.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.CmsPage.CreateChildPage(System.Int32)">
+      <summary>Create a child for the page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.Author">
+      <summary>Name of the user who authored the page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.Children">
+      <summary>A collection of children for the page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.ChildSortDirection">
+      <summary>The direction in which the children for the page will be automatically sorted.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.ChildSortOrder">
+      <summary>The sort order that will automatically be applied to the children of the page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.CreatedDate">
+      <summary>When this page was created.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.CurrentVersion">
+      <summary>Version number.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.DeletedDate">
+      <summary>When this page was deleted. For non deleted pages this value is always null.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.HasChildren">
+      <summary>Flag if the page has any children.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.IsAvailable">
+      <summary>Flag if the page is available to visitors.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.LanguageId">
+      <summary>Language identifier.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.OriginalStatus">
+      <summary>Used for new working copies in order to determine the status of the page it was based.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.PageId">
+      <summary>Page identifier.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.PageName">
+      <summary>Name of the page</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.PageTypeId">
+      <summary>The page type which the page is.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.PageUrl">
+      <summary>Url to page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.Parent">
+      <summary>Parent page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.ParentId">
+      <summary>Page identifier of parent page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.ParentPath">
+      <summary>Collection of all ancestors.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.Property">
+      <summary>Collection of page properties.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.RootId">
+      <summary>Page identifier for the first ancestor of a page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.ShortUrl">
+      <summary>Short url for the page. Every version of the page will create a new url, but they will all be active to the latest published version.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.SortIndex">
+      <summary>Used when the parent has SortIndex as sort order for its children.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.StartPublish">
+      <summary>When the page should be published.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.Status">
+      <summary>The status of the page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.StopPublish">
+      <summary>When the page should be unpublished.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.TreeLevel">
+      <summary>What level the page has counted from the root.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.UpdateDate">
+      <summary>When the page was updated.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.UrlSegment">
+      <summary>Part of the page url. By default based on the page name.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.VisibleInMenu">
+      <summary>Flag if the page should be visible in menus.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.CmsPage.VisibleInSiteMap">
+      <summary>Flag if the page should be visible in sitemaps.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.EditablePage.Publish(System.Boolean)">
+      <summary>Publishes the page. In order to preserve changes to the page it needs to be saved first. Will raise the PagePublished event.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.EditablePage.Save">
+      <summary>Saves the page. Will raise the PageSaved event.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.PageType.GetPageType">
+      <summary>Get page type based on identifier or type.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.PageType.GetPropertyDefinitions(System.Int32)">
+      <summary>Get property definition for a page type.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.PageType.GetPageType(System.Int32)">
+      <summary>Get page type based on identifier or type.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.PageType.GetPageType(System.Type)">
+      <summary>Get page type based on identifier or type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.AllowedTypes">
+      <summary>Array of page types that can be created under a page of this type. If empty no child pages can be created. If null all page types can be created.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.DefaultChildSortDirection">
+      <summary>The child sort direction that will be set as default for a new page of this type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.DefaultChildSortOrder">
+      <summary>The child sort order that will be set as default for a new page of this type.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.DisplayName">
+      <summary>The name of the page type which is displayed in editor.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.Name">
+      <summary>Name of the page type. <strong>Once set this should NOT be changed!</strong></summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.PageTemplate">
+      <summary>Path to page template if using WebForms.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.PageTypeDescription">
+      <summary>Description of the page type. Shown in editor.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.PageTypeId">
+      <summary>Unique identifier.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.PageTypes">
+      <summary>List of all page types in the application.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.PreviewImage">
+      <summary>Path to a preview image for the page type shown in the editor.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.ShowPublishDates">
+      <summary>
+        <em>Currently not used.</em>
+      </summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.ShowSortOrder">
+      <summary>
+        <em>Currently not used.</em>
+      </summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.ShowVisibleInMenu">
+      <summary>
+        <em>Currently not used.</em>
+      </summary>
+    </member>
+    <member name="P:KalikoCMS.Core.PageType.Type">
+      <summary>The type associated with the page type.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.PropertyData.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.Core.PropertyData.ToString">
+      <summary>Returns a string that represents the current object.</summary>
+      <returns>A string that represents the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.Core.RootPage.MakeEditable">
+      <summary>Makes an editable version of the page.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.TagManager.ClearCache">
+      <summary>Remove all entries from the tag cache.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.TagManager.GetPagesForTag(System.String,System.String)">
+      <summary>Get a collection of pages for a specified tag.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.TagManager.GetTags(System.String)">
+      <summary>Get all tags for a tag context.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.TagManager.Startup">
+      <summary>
+        <em>Impementation of IStartupSequence.</em>
+      </summary>
+    </member>
+    <member name="M:KalikoCMS.Core.TagManager.TagPage(System.Guid,System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>Tags a page.</summary>
+    </member>
+    <member name="P:KalikoCMS.Core.TagManager.StartupOrder">
+      <summary>
+        <em>Impementation of IStartupSequence.</em>
+      </summary>
+    </member>
+    <member name="T:KalikoCMS.Core.Collections.SortDirection">
+      <summary>Options for sort direction.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortDirection.Ascending">
+      <summary>The sort will be performed in an ascending order (lower before higher).</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortDirection.Descending">
+      <summary>The sort will be performed in an descending order (higher before lower).</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.Collections.SortOrder">
+      <summary>Options for sort order.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortOrder.SortIndex">
+      <summary>The sort index value for the page will be used for sorting.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortOrder.StartPublishDate">
+      <summary>The page start publishing date will be used for sorting.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortOrder.PageName">
+      <summary>The page name will be used for sorting.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortOrder.UpdateDate">
+      <summary>The page updated date will be used for sorting.</summary>
+    </member>
+    <member name="F:KalikoCMS.Core.Collections.SortOrder.CreatedDate">
+      <summary>The page created date will be used for sorting.</summary>
+    </member>
+    <member name="T:KalikoCMS.Core.Collections.PageCollection">
+      <summary>A collection of pages.</summary>
+    </member>
+    <member name="M:KalikoCMS.Core.Collections.PageCollection.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="T:KalikoCMS.Data.DataStore">
+      <summary>This is an abstract class that cannot be instaniated directly. Instead it should be inherited when creating data store providers, such as StandardDataStore that is included in the core.</summary>
+    </member>
+    <member name="T:KalikoCMS.Data.StandardDataStore">
+      <summary>This is the default data store provider and it will store the data in the same database as the rest of the content is.</summary>
+    </member>
+    <member name="T:KalikoCMS.Modules.InitModule">
+      <summary>Essential module that handles all initialization of the system from ensuring that the database is up-to-date to building an in memory index of all pages.</summary>
+    </member>
+    <member name="T:KalikoCMS.Modules.RequestModuleBase">
+      <summary>Abstract class that acts as foundation for request modules such as the included KalikoCMS.WebForms.RequestModule and <see cref="KalikoCMS.Mvc~KalikoCMS.Mvc.RequestModule.html">KalikoCMS.Mvc.RequestModule</see>.</summary>
+    </member>
+    <member name="T:KalikoCMS.Modules.ShortUrlModule">
+      <summary>Provides additional short hand Urls to pages in the system.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.IPageSavedHandler">
+      <summary>Interface that if implemented by a property editor signals to the system that it should call a special method after the page is saved. This will ensure that
+logic that needs to run after a successfully validated save is called.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.LinkProperty.LinkType">
+      <summary>Defines whether a link is local to a page, local to a file or external.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.BooleanProperty">
+      <summary>Is used to represent true or false.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.CollectionProperty`1">
+      <summary>Is used to create dynamic collections of another property type.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.DateTimeProperty">
+      <summary>Is used for dates.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.FileProperty">
+      <summary>Is used to link to local files.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.HtmlProperty">
+      <summary>Is used for HTML content.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.ImageProperty">
+      <summary>Is used for images, allows the developer to set up image restrictions such as width and/or height (by using the ImagePropertyAttribute).</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.ImagePropertyAttribute">
+      <summary>Attribute to use for ImageProperty properties in order to specify width and/or height.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.LinkProperty">
+      <summary>Is used to point to either an external URL, a local page or file.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.NumericProperty">
+      <summary>Is used for integers.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.PageLinkProperty">
+      <summary>Is used to point towards any page in the system.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.PropertyEditorBase">
+      <summary>The base class that all property editors should inherit from.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.StringProperty">
+      <summary>Is used for simple strings represented by a single line in the editor.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.TagProperty">
+      <summary>Is used to add tags to a page.</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.TagPropertyAttribute">
+      <summary>Attribute to use for TagProperty properties in order to specify which tag context to use
+for that particular property. (Allows the use of different tagging spaces for the same page).</summary>
+    </member>
+    <member name="T:KalikoCMS.PropertyType.TextProperty">
+      <summary>Is used for longer strings represented by a multi line text area in the editor.</summary>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.BooleanProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.CollectionProperty`1.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.DateTimeProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.FileProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.HtmlProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.ImageProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="P:KalikoCMS.PropertyType.ImagePropertyAttribute.Parameters">
+      <summary>Parameter passed to the editor. In the base class this is always null, override in order to pass parameters to the editor for custom property types.</summary>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.LinkProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.MarkdownProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.NumericProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.PageLinkProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.StringProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.TagProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="P:KalikoCMS.PropertyType.TagPropertyAttribute.Parameters">
+      <summary>Parameter passed to the editor. In the base class this is always null, override in order to pass parameters to the editor for custom property types.</summary>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.TextProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+    <member name="M:KalikoCMS.PropertyType.UniversalDateTimeProperty.GetHashCode">
+      <summary>Serves as a hash function for a particular type.</summary>
+      <returns>A hash code for the current object.</returns>
+    </member>
+  </members>
+</doc>

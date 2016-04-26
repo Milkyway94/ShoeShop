@@ -11,4 +11,11 @@ C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debu
 C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\PagedList.Mvc.dll
 C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\PagedList.xml
 C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\PagedList.Mvc.xml
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_FileEditor.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_ImageResize.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_Watermark.dll
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_FileEditor.pdb
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_ImageResize.pdb
+C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\bin\Debug\CKFinder_Watermark.pdb
 C:\Users\milkyway\Documents\Visual Studio 2015\Projects\ShoeShop\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

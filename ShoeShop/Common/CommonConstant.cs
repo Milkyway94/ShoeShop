@@ -18,6 +18,8 @@ namespace ShoeShop.Common
         public static string INSERT_FAIL = "Thêm mới danh mục không thành công!";
         public static string DELETE_SUCCESS = "Xóa danh mục thành công!";
         public static string DELETE_FAIL = "Xóa danh mục không thành công!";
+        public static string UPDATE_SUCCESS = "Cập nhật danh mục thành công!";
+        public static string UPDATE_FAIL = "Cập nhật danh mục không thành công!";
         #endregion
     }
 }

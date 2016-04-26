@@ -11,8 +11,6 @@
     <meta name="author" content="">
     <title>Admin</title>
     <!--Css Ckeditor-->
-    <link rel="stylesheet" href="~/Areas/admin/Plugins/ckeditor/sam ples/css/samples.css">
-    <link rel="stylesheet" href="~/Areas/admin/Plugins/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
     <!--Shop css-->
     <link href="~/Assets/admin/shop_css/shop-css.css" rel="stylesheet">
     <!--Bootstrap core css-->
@@ -28,8 +26,6 @@
     <!-- Custom Fonts -->
     <link href="~/Assets/admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!--Plugin ckeditor JS-->
-    <script src="~/Areas/admin/Plugins/ckeditor/ckeditor.js"></script>
-    <script src="~/Areas/admin/Plugins/ckeditor/samples/js/sample.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -248,14 +244,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> </a>
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
-                        <li class="divider"></li>
                         <li>
-                            @*@Html.ActionLink("Đăng xuất", "Logout", "Login");*@
+                            <a href="/admin/Login/Logout"><i class="fa fa-user fa-fw"></i> Đăng xuất</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -304,7 +296,7 @@
                                     <a href="morris.html"><span class="fa fa-plus-circle"></span>&nbsp Thêm sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html"><span class="glyphicon glyphicon-tags"></span>&nbsp Danh mục</a>
+                                    <a href="/admin/NhomSanPham/Index"><span class="glyphicon glyphicon-tags"></span>&nbsp Danh mục</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -358,8 +350,11 @@
     <!-- Morris Charts JavaScript -->
     <script src="~/Assets/admin/bower_components/raphael/raphael-min.js"></script>
     <script src="~/Assets/admin/bower_components/morrisjs/morris.min.js"></script>
-    <script src="/Assets/admin/js/morris-data.js"></script>
+    <!--CkFinder-->
+    <script src="~/Areas/admin/Plugins/ckfinder/ckfinder.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/Assets/admin/dist/js/sb-admin-2.js"></script>
+    <!--find image-->
+        @RenderSection("Scriptfooter", required: false);
 </body>
 </html>
