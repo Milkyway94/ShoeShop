@@ -36,9 +36,49 @@ namespace Models.Dao
             }
             
         }
-        public IEnumerable<NhomSanPham> ListAll(int page, int pageSize)
+        public IPagedList<NhomSanPham> SearchResult( string searchKey, int pageNum=1, int pageSize=10)
+        {
+            var res = db.NhomSanPhams.Where(o => o.Name.Contains(searchKey));
+            return res.OrderByDescending(o=>o.CreateDate).ToPagedList<NhomSanPham>(pageNum, pageSize);
+        }
+        public NhomSanPham ViewDetail(int id)
+        {
+            return db.NhomSanPhams.Find(id);
+        }
+        public bool Update(NhomSanPham cate)
+        {
+            try
+            {
+                var res = db.NhomSanPhams.Find(cate.Id);
+                res.Name = cate.Name;
+                res.Content = cate.Content;
+                res.CreateDate = cate.CreateDate;
+                res.Images = cate.Images;
+                res.Order = cate.Order;
+                res.SeoTitle = cate.SeoTitle;
+                res.ParentID = cate.ParentID;
+                res.Status = cate.Status;
+                res.ShowOnHome = cate.ShowOnHome;
+                res.MetaTitle = cate.MetaTitle;
+                res.MetaKeyword = cate.MetaKeyword;
+                res.MetaDescription = cate.MetaDescription;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+            
+        }
+        public IPagedList<NhomSanPham> ListAll(int page, int pageSize)
         {
             return db.NhomSanPhams.OrderByDescending(o=>o.CreateDate).ToPagedList(page,pageSize);
+        }
+        public IEnumerable<NhomSanPham> ListAll()
+        {
+            return db.NhomSanPhams.OrderByDescending(o=>o.CreateDate);
         }
     }
 }
