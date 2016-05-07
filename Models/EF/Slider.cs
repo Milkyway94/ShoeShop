@@ -9,7 +9,6 @@ namespace Models.EF
     [Table("Slider")]
     public partial class Slider
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(250)]

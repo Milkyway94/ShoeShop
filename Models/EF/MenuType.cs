@@ -9,7 +9,6 @@ namespace Models.EF
     [Table("MenuType")]
     public partial class MenuType
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]

@@ -9,7 +9,6 @@ namespace Models.EF
     [Table("LogoBanner")]
     public partial class LogoBanner
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(500)]

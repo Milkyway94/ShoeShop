@@ -8,7 +8,6 @@ namespace Models.EF
 
     public partial class Mau_layout
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]

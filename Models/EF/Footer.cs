@@ -9,12 +9,14 @@ namespace Models.EF
     [Table("Footer")]
     public partial class Footer
     {
-        [StringLength(20)]
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
         public bool? Status { get; set; }
+
+        [StringLength(50)]
+        public string FooterType { get; set; }
     }
 }

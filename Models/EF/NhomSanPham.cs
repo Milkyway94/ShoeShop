@@ -12,13 +12,12 @@ namespace Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhomSanPham()
         {
-            SanPhams = new HashSet<SanPham>();
+            Contents = new HashSet<Content>();
         }
 
         public int Id { get; set; }
 
         [StringLength(500)]
-        [Required]
         public string Name { get; set; }
 
         [StringLength(250)]
@@ -31,7 +30,6 @@ namespace Models.EF
         [StringLength(250)]
         public string SeoTitle { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
@@ -51,9 +49,9 @@ namespace Models.EF
         [StringLength(250)]
         public string MetaDescription { get; set; }
 
-        public bool? ShowOnHome { get; set; }
+        public bool ShowOnHome { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
+        public virtual ICollection<Content> Contents { get; set; }
     }
 }
